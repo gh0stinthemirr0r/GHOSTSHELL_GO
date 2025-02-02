@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+package usermanagementpb;
+
+option go_package = "github.com/gh0stinthemirr0r/ghostshell/gRPC/Proto/usermanagementpb;usermanagementpb";
+
+// Define the service for user management
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse); // Retrieve user profile details
+  rpc Ping(PingRequest) returns (PingResponse); // Health check
+}
+
+// Define the service for vault management
+service VaultService {
+  rpc CreateVault(CreateVaultRequest) returns (CreateVaultResponse);
+  rpc GetVaultEntry(GetVaultEntryRequest) returns (GetVaultEntryResponse);
+  rpc DeleteVaultEntry(DeleteVaultEntryRequest) returns (DeleteVaultEntryResponse);
+  rpc Ping(PingRequest) returns (PingResponse); // Health check
+}
+
+// Define the service for managing themes and customizations
+service CustomizationService {
+  rpc SetUserTheme(SetUserThemeRequest) returns (SetUserThemeResponse);
+  rpc GetUserTheme(GetUserThemeRequest) returns (GetUserThemeResponse);
+  rpc SetGlobalTheme(SetGlobalThemeRequest) returns (SetGlobalThemeResponse);
+  rpc GetGlobalTheme(GetGlobalThemeRequest) returns (GetGlobalThemeResponse);
+  rpc Ping(PingRequest) returns (PingResponse); // Health check
+}
+
+// Define user management request and response types
+message CreateUserRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  string auth_token = 4; // Authentication token for validation
+}
+
+message CreateUserResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message DeleteUserRequest {
+  string username = 1;
+  string auth_token = 2; // Authentication token for validation
+}
+
+message DeleteUserResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetUserProfileRequest {
+  string username = 1;
+  string auth_token = 2; // Authentication token for validation
+}
+
+message GetUserProfileResponse {
+  string username = 1;
+  string email = 2;
+  repeated string vault_entries = 3;   // Additional information related to vault
+  string theme = 4;                    // User-specific theme
+  string last_login = 5;               // Last login timestamp
+  repeated string roles = 6;           // User roles
+  string status = 7;                   // Account status (active, suspended, etc.)
+}
+
+// Define vault management request and response types
+message CreateVaultRequest {
+  string key = 1;
+  string value = 2;
+  string username = 3;   // Associated user
+  string auth_token = 4; // Authentication token for validation
+  string encryption_key = 5; // Optional encryption key for post-quantum security
+}
+
+message CreateVaultResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetVaultEntryRequest {
+  string key = 1;
+  string username = 2;   // Associated user
+  string auth_token = 3; // Authentication token for validation
+}
+
+message GetVaultEntryResponse {
+  string value = 1;
+}
+
+message DeleteVaultEntryRequest {
+  string key = 1;
+  string username = 2;   // Associated user
+  string auth_token = 3; // Authentication token for validation
+}
+
+message DeleteVaultEntryResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Define customization and theme management request and response types
+message SetUserThemeRequest {
+  string username = 1;
+  string theme = 2;
+  string auth_token = 3; // Authentication token for validation
+}
+
+message SetUserThemeResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetUserThemeRequest {
+  string username = 1;
+  string auth_token = 2; // Authentication token for validation
+}
+
+message GetUserThemeResponse {
+  string theme = 1;
+}
+
+message SetGlobalThemeRequest {
+  string theme = 1;
+  string auth_token = 2; // Authentication token for validation
+}
+
+message SetGlobalThemeResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetGlobalThemeRequest {
+  string auth_token = 1; // Authentication token for validation
+}
+
+message GetGlobalThemeResponse {
+  string theme = 1;
+}
+
+// Ping messages for health checks
+message PingRequest {
+  string auth_token = 1; // Authentication token for validation
+}
+
+message PingResponse {
+  string status = 1;     // "OK" or error message
+}
