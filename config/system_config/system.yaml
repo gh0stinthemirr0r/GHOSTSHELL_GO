@@ -1,0 +1,24 @@
+logger:
+  log_level: "info"          # Log level: debug, info, warn, error, fatal
+  log_file_path: "logs/ghostshell.log"  # File path for logging
+
+ai:
+  model_path: "ai/models/codellama-7b.Q8_0.gguf"  # Path to the AI model
+  num_threads: 8                                  # Number of threads for inference
+  backend: "GPU"                                  # Backend type: "CPU" or "GPU"
+
+network:
+  enable_tls: true                      # Enable TLS for secure communications
+  tls_cert_path: "certs/cert.pem"       # Path to TLS certificate
+  tls_key_path: "certs/key.pem"         # Path to TLS private key
+  max_connections: 100                 # Maximum concurrent connections
+
+security:
+  use_post_quantum_crypto: true        # Enable post-quantum cryptography
+  vault_path: "secure/vault.db"        # Path to secure vault file
+  encryption_key_size: 256             # Key size for AES or post-quantum encryption (bits)
+
+general:
+  app_name: "GHOSTSHELL"
+  version: "1.0.0"
+  telemetry_enabled: false             # Enable or disable telemetry

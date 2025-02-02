@@ -1,0 +1,98 @@
+ai:
+  # Basic Model Setup
+  model:
+    name: "GPT-Llama"                    # Human-friendly name of the model
+    model_path: "models/llama-2.gguf"    # Local path or remote location for the model file
+    # If your system supports GPU acceleration or CPU fallback:
+    device: "gpu"                        # Options: "gpu", "cpu", "auto"
+    # If you load from Hugging Face:
+    huggingface:
+      repo_id: "facebook/llama-2-7b"     # Example placeholder
+      revision: "main"                   # branch/tag
+      token: ""                          # If needed for private models
+
+    # Key hyperparameters
+    temperature: 0.7                     # Creativity / randomness level
+    max_tokens: 1024                     # Maximum tokens per generation
+    context_window: 2048                 # Maximum context size (prompt + generated)
+    safety: true                         # Enable safety filters or safe generation
+
+    # Additional generation controls
+    top_p: 0.9                           # Nucleus sampling
+    top_k: 50                            # K sampling
+    repetition_penalty: 1.1             # Penalize repeated phrases
+    stop_sequences:
+      - "<|endoftext|>"                 # Example stop tokens
+
+    # Fine-tuning or training details (if relevant)
+    fine_tune:
+      enabled: false
+      dataset_path: "datasets/my_finetune.json"  # Data for fine-tuning
+      epochs: 3                                  # Fine-tuning epochs
+      batch_size: 8
+      learning_rate: 1.0e-5
+      # Potential advanced fields...
+      # weight_decay: 0.01
+      # early_stopping: true
+
+    # Caching / Checkpointing
+    cache:
+      enabled: true
+      path: "cache/llm_cache.db"          # Where partial computations or embeddings are stored
+      # advanced caching settings:
+      max_entries: 1000
+      expiration_days: 7
+
+    # Multi-model chaining or retrieval augmentation
+    retrieval:
+      enabled: false
+      document_store: "vector_db/vectors" # If you do retrieval-augmented generation
+      # More advanced retrieval settings...
+
+    # Logging / Debug
+    debug:
+      verbose: false          # Print verbose logs in the generation process
+      save_logs: false        # If you want to save conversation logs
+      logs_path: "logs/ai.log"
+
+  # Overarching Behavior / Orchestration
+  orchestration:
+    # If you have multiple LLMs and want to chain them, or pick one at runtime:
+    chain_of_thought: false
+    # Some advanced options like switching to a simpler model for fast retrieval
+    fallback_model: ""              # If main model fails or is too big
+    fallback_trigger_tokens: 1200   # If prompt length is near context_window, fallback to smaller model
+
+  # UI / Interaction
+  ui:
+    # Basic configuration for how the AI is presented in your GhostShell or UI
+    conversation_mode: "chat"       # e.g., "chat", "completion"
+    # Possibly referencing theming or color usage for AI responses:
+    response_highlight_color: "#FF79C6"
+    show_model_name: true           # Display "GPT-Llama" in the UI header
+    # Additional UI options…
+
+  # (Optional) Global Rate Limiting
+  rate_limit:
+    enabled: false
+    requests_per_minute: 20
+    # IP-based or user-based, etc.
+
+  # (Optional) Safety/Nudity/Content filters
+  content_filter:
+    enabled: true
+    # Fields to define your content filtering thresholds (if your pipeline supports them)
+    violence_threshold: 0.9
+    sexual_content_threshold: 0.8
+    # etc.
+
+  # ElevenLabs Integration
+  elevenlabs:
+    enabled: false                       # Enable or disable ElevenLabs TTS
+    api_key: ""                         # API key for ElevenLabs
+    voice_id: ""                        # Voice ID for ElevenLabs
+
+  # FreeTTS Integration
+  freetts:
+    enabled: true                        # Enable FreeTTS by default if ElevenLabs is not configured
+    default_lang: "en-US"               # Default language for FreeTTS

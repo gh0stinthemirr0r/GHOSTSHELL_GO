@@ -1,0 +1,169 @@
+theme:
+  font:
+    family: "JetBrains Mono"      # Font family
+    size: 14                     # Default font size
+    weight: "normal"             # Font weight: normal, bold, light
+    smoothing: true              # Whether to apply font smoothing/anti-aliasing
+    fallback_fonts:
+      - "Noto Sans"
+      - "DejaVu Sans Mono"
+
+  colors:
+    background: "#1E1E2E"        # Terminal background color
+    foreground: "#A6ACCD"        # Default text color
+    cursor: "#F7768E"            # Cursor color
+    selection_background: "#44475A"  # Selection background color
+    selection_foreground: "#F8F8F2"  # Selection text color
+
+    background_transparency: 0.95    # (0.0 = fully transparent, 1.0 = opaque)
+
+    ansi_colors:
+      black: "#21222C"
+      red: "#FF5555"
+      green: "#50FA7B"
+      yellow: "#F1FA8C"
+      blue: "#BD93F9"
+      magenta: "#FF79C6"
+      cyan: "#8BE9FD"
+      white: "#F8F8F2"
+      bright_black: "#6272A4"
+      bright_red: "#FF6E6E"
+      bright_green: "#69FF94"
+      bright_yellow: "#FFFFA5"
+      bright_blue: "#D6ACFF"
+      bright_magenta: "#FF92D0"
+      bright_cyan: "#A4FFFF"
+      bright_white: "#FFFFFF"
+
+    # NEW: neon glow color for special effects or highlighting
+    neon_glow_color: "#BAFF29"    # Vibrant neon greenish
+
+  animations:
+    enable_particle_effects: true  # Enable particle effects on input
+    particle_count: 100            # Number of particles
+    particle_speed: 2.0            # Speed of particles
+    enable_glow_effect: true       # Glow effect around the cursor
+
+    cursor_blink_rate: 0.75        # Blink rate in seconds (0 = no blink)
+    cursor_shape: "block"          # block, bar, underscore
+    audio_reactive: false          # Whether particles react to audio input
+
+    # Additional fancy animations
+    fade_in_duration: 0.3          # Time (secs) for fade-in transitions
+    fade_out_duration: 0.2         # Time (secs) for fade-out transitions
+    bouncy_scrolling: true         # Animate a subtle bounce on scroll edges
+    rainbow_cursor: false          # Cycles cursor color through rainbow
+
+  layout:
+    prompt_position: "bottom"      # Options: top, bottom
+    line_spacing: 1.2              # Line spacing multiplier
+    padding:                       # Terminal padding (pixels)
+      top: 10
+      bottom: 10
+      left: 15
+      right: 15
+
+    scroll_speed: 1.0             # Multiplier for scroll sensitivity
+    highlight_active_line: true   # Highlight the line under the cursor
+    highlight_line_color: "#333955"
+
+    window_padding: 0             # Extra padding around entire window
+    max_width: 1200               # If > 0, limit terminal width
+    auto_center: false            # Center the terminal horizontally if narrower
+
+  widgets:
+    clock: true                    # Display clock widget
+    network_status: true           # Display network status
+    cpu_usage: true                # Display CPU usage
+    memory_usage: true             # Display memory usage
+
+    update_interval: 2            # Update frequency (seconds)
+    show_battery: false           # Display battery status (if supported)
+    show_volume: false            # Display volume level
+
+  shadows:
+    enabled: true                  # Enable window shadows
+    intensity: 0.5                 # Shadow intensity (0.0 to 1.0)
+    blur_radius: 15                # Shadow blur radius (pixels)
+    offset_x: 4                    # Horizontal drop shadow offset
+    offset_y: 4                    # Vertical drop shadow offset
+
+  borders:
+    radius: 12                     # Border corner radius
+    thickness: 2                   # Border thickness
+    color: "#FF79C6"               # Border color
+    style: "rounded"               # e.g. rounded, square, angled
+
+  window:
+    always_on_top: false           # Keep window always on top
+    draggable: true                # Window can be dragged from empty space
+    resize: true                   # Allow window resizing
+    title_bar_visible: true        # Show a custom title bar
+    double_click_maximize: true    # Double-click title bar to toggle maximize
+
+  # CYBERPUNK INSPIRED THEMES
+  profiles:
+    NeonNight:
+      background: "#0D0221"        # Dark purple night sky
+      foreground: "#00FFD5"        # Neon turquoise
+      border_color: "#00FFD5"
+      neon_glow_color: "#FF00EA"   # Vibrant magenta for glow
+      border_thickness: 3
+      # Overriding a few animations or layout if desired
+      enable_particle_effects: true
+
+    ElectricBlaze:
+      background: "#1A0E00"        # Deep orange-brown
+      foreground: "#FF9100"        # Electric orange
+      border_color: "#FF0000"
+      neon_glow_color: "#FF9100"   # Same as foreground for consistent glow
+      border_thickness: 2
+      particle_speed: 3.0          # Faster, more intense movement
+
+    RetroWave:
+      background: "#1B0036"        # Dark purple midnight
+      foreground: "#FFCE00"        # Neon gold
+      border_color: "#FF00F7"
+      neon_glow_color: "#F51720"
+      rainbow_cursor: true         # Turn on rainbow cursor for retro vibe
+
+    LaserGrid:
+      background: "#04070C"        # Very dark gray/black
+      foreground: "#26F7FD"        # Laser-blue
+      border_color: "#FD0054"      # Laser-pink
+      neon_glow_color: "#00FDAB"
+      bouncy_scrolling: true
+
+    MidnightChrome:
+      background: "#080808"        # Near-black
+      foreground: "#C8C8C8"        # Metallic chrome text
+      border_color: "#888888"
+      neon_glow_color: "#FF2ACB"
+      border_thickness: 4
+      style: "square"
+      enable_glow_effect: false    # Minimal glow
+
+    SynthStreets:
+      background: "#2A0134"        # Deep neon purple
+      foreground: "#F1FF52"        # Bright neon yellow
+      border_color: "#EF20D9"      # Pinkish border
+      neon_glow_color: "#EF20D9"
+      highlight_line_color: "#3F1A59"
+      fade_in_duration: 0.5
+
+    UltravioletMantis:
+      background: "#07061F"
+      foreground: "#D7F205"
+      border_color: "#A300D9"
+      neon_glow_color: "#AAFF00"
+      audio_reactive: true         # If you want audio-based particles
+      enable_particle_effects: true
+
+    AugmentedFuture:
+      background: "#000000"        # Pure black
+      foreground: "#00FFDB"        # Aqua neon
+      border_color: "#00FFDB"
+      neon_glow_color: "#FE00FF"
+      border_thickness: 2
+      fade_out_duration: 0.4
+      always_on_top: true          # Possibly override for a strong pop-up vibe
